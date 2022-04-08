@@ -16,7 +16,7 @@ public class Student {
     }
 
     public boolean equalsSt(@NotNull Student another) {
-        if (Objects.equals(this.name, another.name) && this.grates.size() == another.grates.size()) { // зачем проверка size
+        if (Objects.equals(this.name, another.name) && this.grates.size() == another.grates.size()) {
             return this.grates.equals(another.grates);
         } else return false;
     }
