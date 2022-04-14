@@ -8,6 +8,12 @@ public class Group {
 
     public LinkedList<Student> studentsList = new LinkedList<>();
 
+    public Group(int number) {
+
+        this.number = number;
+
+    }
+
     public void changeNum(int Num) {
         this.number = Num;
     }
@@ -28,17 +34,19 @@ public class Group {
         }
     }
 
-    public Group(int number) {
-
-        this.number = number;
-
-    }
-
     public void newSbjGrade(String name, String sbj, String gr) {
         for (Student el : this.studentsList) {
             if (el.name.equals(name)) {
-                el.grates.put(sbj, gr);
+                el.newSbjGradeSt(sbj, gr);
 
+            }
+        }
+    }
+
+    public void deleteSbj (String name, String sbj){
+        for (Student el : this.studentsList) {
+            if (el.name.equals(name)) {
+                el.deleteSbjSt(sbj);
             }
         }
     }
@@ -46,7 +54,7 @@ public class Group {
     public void deleteGrate(String name, String sbj) {
         for (Student el : this.studentsList) {
             if (el.name.equals(name)) {
-                el.grates.put(sbj, "");
+                el.deleteGrateSt(sbj);
 
             }
         }

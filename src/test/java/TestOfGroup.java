@@ -1,4 +1,5 @@
-
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestOfGroup {
 
@@ -13,50 +14,59 @@ public class TestOfGroup {
         star.newSbjGrade("a", "Physics", "2");
         river.addStudent("a");
         river.newSbjGrade("a", "Physics", "2");
-        System.out.println(star.equalsGroup(river));// true
+        assertTrue(star.equalsGroup(river));
 
         //test2
         star.addStudent("c");
         star.newSbjGrade("c", "Physics", "2");
         river.addStudent("d");
         river.newSbjGrade("d", "Physics", "2");
-        System.out.println(star.equalsGroup(river)); //false
+        assertFalse(star.equalsGroup(river));
 
         //test3
         star.addStudent("d");
         star.newSbjGrade("d", "Physics", "1");
         river.addStudent("d");
         river.newSbjGrade("d", "Physics", "2");
-        System.out.println(star.equalsGroup(river)); //false
+        assertFalse(star.equalsGroup(river));
 
         //test4
         briliant.addStudent("b");
         briliant.newSbjGrade("b", "Physics", "2");
         moonlight.addStudent("b");
         moonlight.newSbjGrade("b", "Physics", "2");
-        System.out.println(briliant.equalsGroup(moonlight));//false
+        assertFalse(briliant.equalsGroup(moonlight));
 
         //test5
         Group sky = new Group(3);
         Group space = new Group(3);
         space.changeNum(111111111);
-        System.out.println(sky.equalsGroup(space)); //false
+        assertFalse(sky.equalsGroup(space));
 
         //test6
         sky.addStudent("Георгий");
-        sky.showGroup();//Георгий
-        sky.removeStudent("Георгий");
-        sky.showGroup();// ничего
+        Group grForTest2 = new Group(3);
+        assertFalse(grForTest2.equalsGroup(sky));
 
         //test7
+        sky.removeStudent("Георгий");
+        Group grForTest = new Group(3);
+        assertTrue(grForTest.equalsGroup(sky));
+
+        //test8
         sky.addStudent("Георгий");
         sky.newSbjGrade("Георгий", "Physics", "4");
-        sky.newSbjGrade("Георгий", "Physics1", "4");
-        sky.newSbjGrade("Георгий", "Physics2", "4");
-        sky.showGroup();//есть оценка по Physics
-        sky.deleteGrate("Георгий", "Physics");
-        sky.showGroup();//нет оценки по Physics
+        Group grForTest3 = new Group(3);
+        grForTest3.addStudent("Георгий");
+        grForTest3.newSbjGrade("Георгий", "Physics", "4");
+        assertTrue(grForTest3.equalsGroup(sky));
 
+        //test9
+        sky.deleteGrate("Георгий", "Physics");
+        Group grForTest4 = new Group(3);
+        grForTest4.addStudent("Георгий");
+        grForTest4.newSbjGrade("Георгий", "Physics", "");
+        assertTrue(grForTest4.equalsGroup(sky));
 
     }
 
